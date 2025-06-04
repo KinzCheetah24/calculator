@@ -50,17 +50,21 @@ numberBtns.forEach((number) => {
 
 operatorBtns.forEach((operator) => {
     operator.addEventListener("click", () => {
-        if(operation === "") {
-            firstNumber = displayNumber;
-            displayContent.textContent += operator.textContent;
-            displayNumber = "";
-            operation = operator.textContent;
-        } else {
-            secondNumber = displayNumber;
-            displayNumber = operate(parseInt(firstNumber), parseInt(secondNumber), operation);
-            displayContent.textContent = displayNumber;
-            operation = operator.textContent;
-            operationTriggered = true
+        if (!(displayNumber === "" && displayNumber === "")) {
+            if (operationTriggered) {
+                operation = operator.textContent;
+            }else if(operation === "") {
+                firstNumber = displayNumber;
+                displayContent.textContent += operator.textContent;
+                displayNumber = "";
+                operation = operator.textContent;
+            } else {
+                secondNumber = displayNumber;
+                displayNumber = Math.round(operate(parseFloat(firstNumber), parseFloat(secondNumber), operation) * 1000000) / 1000000;
+                displayContent.textContent = displayNumber;
+                operation = operator.textContent;
+                operationTriggered = true;
+            }
         }
     })
 });
@@ -72,7 +76,8 @@ clearBtn.addEventListener("click", () => {
 
 equalBtn.addEventListener("click", () => {
     secondNumber = displayNumber;
-    displayNumber = operate(parseInt(firstNumber), parseInt(secondNumber), operation);
+    displayNumber = Math.round(operate(parseFloat(firstNumber), parseFloat(secondNumber), operation) * 1000000) / 1000000;
     displayContent.textContent = displayNumber;
     firstNumber = "", secondNumber = "", operation = "";
+    operationTriggered = true;
 });
