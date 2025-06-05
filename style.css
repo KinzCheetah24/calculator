@@ -1,51 +1,91 @@
 .calculator {
-    width: 250px;
-    height: 310px;
+    width: 550px;
+    height: 610px;
 
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
 
-    border: 1px solid black;
+    border-radius: 10px;
+
+    background-color: #33373b;
 }
 
 .calculator .display {
-    width: 200px;
-    height: 50px;
+    width: 450px;
+    height: 100px;
 
     display: flex;
     flex-direction: column;
     align-items: end;
     justify-content: end;
 
-    border: 1px solid black;
+    border: 1px solid #33373b;
 
     margin-bottom: 10px;
+    
+    background-color: gray;
 }
 
 .calculator .display .operation {
-    width: 180px;
+    width: 400px;
     height: 15px;
+
+    font-size: 1.5rem;
 
     text-align: end;
 
-    margin-right: 10px;
-    margin-bottom: 10px;
+    margin-right: 20px;
+    margin-bottom: 20px;
 }
 
-.calculator .row {
-    width: 200px;
-    height: 40px;
+.calculator .buttons .row {
+    width: 450px;
+    height: 72px;
 
     display: flex;
     flex-direction: row;
 }
 
-.calculator .row button {
-    flex: 1;
+.calculator .buttons .row button {
+    padding: 0;
+    margin: 0;
 
-    margin: 1px;
+    border: 2px solid #33373b;
+    border-radius: 5px;
 
     text-align: center;
+}
+
+.numberBtn {
+    background-color: darkgray;
+}
+
+.numberBtn:active {
+    background-color: gray;
+}
+
+.equalBtn {
+    background-color: white;
+}
+
+.equalBtn:active {
+    background-color: rgb(216, 216, 216);
+}
+
+.operatorBtn, .clearBtn, .backSpaceBtn {
+    background-color: orange;
+}
+
+.operatorBtn:active, .clearBtn:active, .backSpaceBtn:active {
+    background-color: darkorange;
+}
+
+.numberBtn, .operatorBtn, .clearBtn {
+    flex: 1;
+}
+
+.backSpaceBtn, .equalBtn {
+    flex: 2;
 }
