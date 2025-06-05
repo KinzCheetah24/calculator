@@ -1,3 +1,13 @@
+body {
+    width: 100vw;
+    height: 100vh;
+    
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
 .calculator {
     width: 550px;
     height: 610px;
@@ -8,6 +18,8 @@
     align-items: center;
 
     border-radius: 10px;
+
+    margin: auto;
 
     background-color: #33373b;
 }
