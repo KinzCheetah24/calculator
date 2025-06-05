@@ -31,6 +31,7 @@ const displayContent = document.querySelector(".display .operation");
 const numberBtns = document.querySelectorAll(".numberBtn");
 const operatorBtns = document.querySelectorAll(".operatorBtn");
 const clearBtn = document.querySelector(".clearBtn");
+const backSpaceBtn = document.querySelector(".backSpaceBtn")
 const equalBtn = document.querySelector(".equalBtn");
 let displayNumber = "", firstNumber, secondNumber, operation = "", operationTriggered = false;
 
@@ -63,6 +64,7 @@ operatorBtns.forEach((operator) => {
                 displayNumber = Math.round(operate(parseFloat(firstNumber), parseFloat(secondNumber), operation) * 1000000) / 1000000;
                 displayContent.textContent = displayNumber;
                 operation = operator.textContent;
+                firstNumber = "", secondNumber = "";
                 operationTriggered = true;
             }
         }
@@ -72,6 +74,21 @@ operatorBtns.forEach((operator) => {
 clearBtn.addEventListener("click", () => {
     displayContent.textContent = "";
     displayNumber = "", firstNumber = "", secondNumber = "", operation = "";
+});
+
+backSpaceBtn.addEventListener("click", () => {
+    if (!operationTriggered) {
+        if(!(displayContent.textContent.slice(displayContent.textContent.length - 1) === "") && displayContent.textContent.slice(displayContent.textContent.length - 1) === operation) {
+            operation = "";
+        }
+        displayContent.textContent = displayContent.textContent.substring(0, displayContent.textContent.length - 1);
+        displayNumber = displayContent.textContent;
+        console.log(displayContent.textContent)
+        if(!(displayContent.textContent.slice(displayContent.textContent.length - 1) === "") && displayContent.textContent.slice(displayContent.textContent.length - 1) === operation) {
+            secondNumber = "";
+            displayNumber = "";
+        }
+    }
 });
 
 equalBtn.addEventListener("click", () => {
