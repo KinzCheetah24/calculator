@@ -36,6 +36,11 @@ const equalBtn = document.querySelector(".equalBtn");
 let displayNumber = "", firstNumber, secondNumber, operation = "", operationTriggered = false;
 
 numberBtns.forEach((number) => {
+    addEventListener("keypress", (e) => {
+        if (e.key === number.textContent) {
+            number.click();
+        }
+    });
     number.addEventListener("click", () => {
         if(!operationTriggered) {
             displayContent.textContent += number.textContent;
@@ -50,6 +55,12 @@ numberBtns.forEach((number) => {
 });
 
 operatorBtns.forEach((operator) => {
+    addEventListener("keydown", (e) => {
+        if (e.key === operator.textContent) {
+            operator.click();
+        }
+    });
+
     operator.addEventListener("click", () => {
         if (!(displayNumber === "" && displayNumber === "")) {
             if (operationTriggered) {
@@ -68,10 +79,16 @@ operatorBtns.forEach((operator) => {
                 operationTriggered = true;
             }
         }
-    })
+    });
 });
 
 clearBtn.addEventListener("click", () => {
+    addEventListener("keydown", (e) => {
+        if (e.key === "sdfasfsdf") {
+            clearBtn.click();
+        }
+    });
+
     displayContent.textContent = "";
     displayNumber = "", firstNumber = "", secondNumber = "", operation = "";
 });
@@ -83,7 +100,6 @@ backSpaceBtn.addEventListener("click", () => {
         }
         displayContent.textContent = displayContent.textContent.substring(0, displayContent.textContent.length - 1);
         displayNumber = displayContent.textContent;
-        console.log(displayContent.textContent)
         if(!(displayContent.textContent.slice(displayContent.textContent.length - 1) === "") && displayContent.textContent.slice(displayContent.textContent.length - 1) === operation) {
             secondNumber = "";
             displayNumber = "";
@@ -97,4 +113,14 @@ equalBtn.addEventListener("click", () => {
     displayContent.textContent = displayNumber;
     firstNumber = "", secondNumber = "", operation = "";
     operationTriggered = true;
+});
+
+addEventListener("keydown", (e) => {
+    if (e.key === "Delete") {
+        clearBtn.click();
+    } else if (e.key === "Enter") {
+        equalBtn.click();
+    } else if(e.key === "Backspace") {
+        backSpaceBtn.click();
+    }
 });
